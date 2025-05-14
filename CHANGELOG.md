@@ -1,3 +1,1 @@
-Translation
-
-**Full Changelog**: https://github.com/jvdechine/ha-fusion/commits/2025.5.14
+**Full Changelog**: https://github.com/jvdechine/ha-fusion/compare/2025.5.14...2025.5.16
