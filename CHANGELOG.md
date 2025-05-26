@@ -1,1 +1,1 @@
-Removendo logs
+Correção para suporte a Websocket SSL
