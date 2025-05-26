@@ -1,1 +1,1 @@
-Adicionando logs para adicionar ssl
+Removendo logs
