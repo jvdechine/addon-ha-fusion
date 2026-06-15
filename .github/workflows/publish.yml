@@ -24,8 +24,11 @@ jobs:
             arch="${entry%%:*}"
             os="${entry##*:}"
             image="joaovictordechine/addon-ha-fusion-${arch}"
-            matrix=$(echo "$matrix" | jq -c --arg arch "$arch" --arg os "$os" --arg image "$image" \
-              '.include += [{arch: $arch, os: $os, image: $image}]')
+            build_from="ghcr.io/home-assistant/${arch}-base:latest"
+            matrix=$(echo "$matrix" | jq -c \
+              --arg arch "$arch" --arg os "$os" \
+              --arg image "$image" --arg build_from "$build_from" \
+              '.include += [{arch: $arch, os: $os, image: $image, build_from: $build_from}]')
           done
           echo "matrix=$matrix" >> "$GITHUB_OUTPUT"
 
@@ -51,3 +54,5 @@ jobs:
           push: "true"
           version: latest
           cosign: "false"
+          build-args: |
+            BUILD_FROM=${{ matrix.build_from }}
