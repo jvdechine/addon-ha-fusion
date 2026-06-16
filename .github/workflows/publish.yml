@@ -67,5 +67,6 @@ jobs:
           cosign: "false"
           build-args: |
             BUILD_FROM=${{ matrix.build_from }}
+            VERSION=${{ needs.init.outputs.version }}
           labels: |
             io.hass.type=addon

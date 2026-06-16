@@ -7,6 +7,7 @@ WORKDIR /app
 
 ### remote
 # clone, build and remove repo example data
+ARG VERSION
 RUN git clone --depth 1 https://github.com/jvdechine/ha-fusion . && \
   npm install --verbose && \
   npm run build && \
