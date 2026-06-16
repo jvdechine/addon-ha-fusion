@@ -14,7 +14,16 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       matrix: ${{ steps.matrix.outputs.matrix }}
+      version: ${{ steps.version.outputs.version }}
     steps:
+      - uses: actions/checkout@v4
+
+      - name: Get version from config.yaml
+        id: version
+        run: |
+          version=$(grep '^version:' config.yaml | awk '{print $2}')
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
       - name: Build matrix
         id: matrix
         shell: bash
@@ -50,9 +59,13 @@ jobs:
           container-registry-username: ${{ secrets.DOCKER_USERNAME }}
           container-registry-password: ${{ secrets.DOCKER_PASSWORD }}
           image: ${{ matrix.image }}
-          image-tags: latest
+          image-tags: |
+            ${{ needs.init.outputs.version }}
+            latest
           push: "true"
-          version: latest
+          version: ${{ needs.init.outputs.version }}
           cosign: "false"
           build-args: |
             BUILD_FROM=${{ matrix.build_from }}
+          labels: |
+            io.hass.type=addon
