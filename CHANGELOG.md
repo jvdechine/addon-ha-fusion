@@ -1,1 +1,1 @@
-- AlteraÁ„o media-query modal alarm
+- Fix: c√¢mera n√£o abria ao acessar via fusion sem ingress (camera_proxy_stream + HLS URL relativa)
