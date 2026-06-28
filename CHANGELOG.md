@@ -1,1 +1,3 @@
-- Fix: câmera não abria ao acessar via fusion sem ingress (camera_proxy_stream + HLS URL relativa)
+- Botão: nova opção confirmar ação antes de executar (quando mostrar informações = Não)
+- Câmeras: grid com mínimo 4 colunas garantindo sempre 2 por linha
+- Evento HA_FUSION open_camera abre câmera específica via automação (ex: campainha)
